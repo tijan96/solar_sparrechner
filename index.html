@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8" />
+  <title>Solar-Sparrechner</title>
+  <!-- Google Fonts: Nunito -->
+  <link rel="preconnect" href="https://fonts.gstatic.com" />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700&display=swap"
+    rel="stylesheet"
+  />
+
+  <!-- Link to the updated CSS -->
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+
+  <h1 class="title">Solar-Sparrechner</h1>
+
+  <!-- Progress Bar -->
+  <div class="progress-bar">
+    <div class="progress" id="progress"></div>
+    <div class="progress-step active"></div>
+    <div class="progress-step"></div>
+    <div class="progress-step"></div>
+    <div class="progress-step"></div>
+    <div class="progress-step"></div>
+    <div class="progress-step"></div>
+    <div class="progress-step"></div>
+  </div>
+
+  <form id="solarForm">
+    <!-- STEP 1 -->
+    <div class="form-step active">
+      <h2>1. Standort</h2>
+      <p>Bitte gib deine Postleitzahl ein:</p>
+      <div class="form-group">
+        <label for="plz">PLZ:</label>
+        <input type="text" id="plz" name="plz" placeholder="z.B. 10115" required />
+      </div>
+      <div class="button-group">
+        <button type="button" class="btn next-btn" data-next-step>Weiter</button>
+      </div>
+    </div>
+
+    <!-- STEP 2: Dachtyp -->
+    <div class="form-step">
+      <h2>2. Dachtyp</h2>
+      <p>Wähle deinen Dachtyp:</p>
+      <div class="dachtyp-container">
+        <!-- Example icons (adjust file paths / images as needed) -->
+        <button class="dachtyp-btn" data-dachtyp="Satteldach">
+          <img src="C:\Users\User\Documents\Projekte\SolarEnergyCalculator\chat_gpt\v2\images\anderes2.png" alt="Satteldach" /><br>Satteldach
+        </button>
+        <button class="dachtyp-btn" data-dachtyp="Flachdach">
+          <img src="C:\Users\User\Documents\Projekte\SolarEnergyCalculator\chat_gpt\v2\images\flachdach2.png" alt="Flachdach" /><br>Flachdach
+        </button>
+        <button class="dachtyp-btn" data-dachtyp="Pultdach">
+          <img src="C:\Users\User\Documents\Projekte\SolarEnergyCalculator\chat_gpt\v2\images\pultdach2.png" alt="Pultdach" /><br>Pultdach
+        </button>
+        <button class="dachtyp-btn" data-dachtyp="Anderes">
+          <img src="C:\Users\User\Documents\Projekte\SolarEnergyCalculator\chat_gpt\v2\images\anderes2.png" alt="Anderes" /><br>Anderes
+        </button>
+      </div>
+
+      <div class="button-group">
+        <button type="button" class="btn prev-btn" data-prev-step>Zurück</button>
+        <button type="button" class="btn next-btn" data-next-step>Weiter</button>
+      </div>
+    </div>
+
+    <!-- STEP 3: Dachgröße -->
+    <div class="form-step">
+      <h2>3. Dachgröße</h2>
+      <p>Ziehe den Regler, um die ungefähre Dachgröße (m²) zu bestimmen:</p>
+      <div class="form-group">
+        <input
+          type="range"
+          id="roofSizeRange"
+          name="roofSizeRange"
+          min="10"
+          max="300"
+          step="10"
+          value="100"
+        />
+        <span id="roofSizeValue">100</span> m²
+      </div>
+      <div class="button-group">
+        <button type="button" class="btn prev-btn" data-prev-step>Zurück</button>
+        <button type="button" class="btn next-btn" data-next-step>Weiter</button>
+      </div>
+    </div>
+
+    <!-- STEP 4: Haushaltsgröße -->
+    <div class="form-step">
+      <h2>4. Haushaltsgröße</h2>
+      <p>Wähle die Personenanzahl oder gib einen individuellen Verbrauch (kWh/Jahr) ein:</p>
+      <div class="household-container">
+        <button class="haushalt-btn" data-haushalt="1">1 Person</button>
+        <button class="haushalt-btn" data-haushalt="2">2 Personen</button>
+        <button class="haushalt-btn" data-haushalt="3">3 Personen</button>
+        <button class="haushalt-btn" data-haushalt="4">4 Personen</button>
+        <button class="haushalt-btn" data-haushalt="5">5 Personen</button>
+      </div>
+      <div class="form-group">
+        <label for="stromverbrauch">Stromverbrauch (kWh/Jahr):</label>
+        <input
+          type="number"
+          id="stromverbrauch"
+          name="stromverbrauch"
+          min="1000"
+          max="100000"
+          value="2500"
+        />
+      </div>
+      <div class="button-group">
+        <button type="button" class="btn prev-btn" data-prev-step>Zurück</button>
+        <button type="button" class="btn next-btn" data-next-step>Weiter</button>
+      </div>
+    </div>
+
+    <!-- STEP 5: Ersparnis -->
+    <div class="form-step">
+      <h2>5. Stromkostenersparnis</h2>
+      <p>Basierend auf den bisherigen Angaben könnte deine jährliche Ersparnis ungefähr betragen:</p>
+      <div class="ersparnis-display">
+        <span id="ersparnisValue">0</span> €
+      </div>
+      <p>(Diese Berechnung ist nur eine grobe Schätzung und wird noch verfeinert)</p>
+      <div class="button-group">
+        <button type="button" class="btn prev-btn" data-prev-step>Zurück</button>
+        <button type="button" class="btn next-btn" data-next-step>Weiter</button>
+      </div>
+    </div>
+
+    <!-- STEP 6: Persönliche Daten -->
+    <div class="form-step">
+      <h2>6. Persönliche Daten</h2>
+      <div class="form-group">
+        <label for="fullName">Vollständiger Name:</label>
+        <input type="text" id="fullName" name="fullName" required />
+      </div>
+      <div class="form-group">
+        <label for="email">E-Mail-Adresse:</label>
+        <input type="email" id="email" name="email" required />
+      </div>
+      <div class="form-group">
+        <label for="phone">Telefonnummer:</label>
+        <input type="tel" id="phone" name="phone" required />
+      </div>
+      <p>Alle Felder sind erforderlich</p>
+      <div class="button-group">
+        <button type="button" class="btn prev-btn" data-prev-step>Zurück</button>
+        <button type="button" class="btn next-btn" data-next-step>Weiter</button>
+      </div>
+    </div>
+
+    <!-- STEP 7: Abschluss -->
+    <div class="form-step">
+      <h2>7. Vielen Dank!</h2>
+      <p>Wir suchen jetzt nach passenden Installateuren in deiner Region und werden uns bald bei dir melden!</p>
+      <div class="button-group">
+        <button type="button" class="btn prev-btn" data-prev-step>Zurück</button>
+        <button type="submit" class="btn submit-btn">Abschließen</button>
+      </div>
+    </div>
+  </form>
+
+  <script src="script.js"></script>
+</body>
+</html>

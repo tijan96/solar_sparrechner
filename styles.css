@@ -1,0 +1,218 @@
+/* BASIC RESET */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+body {
+  font-family: 'Nunito', sans-serif;
+  background: #f9fff9; /* Subtle greenish white */
+  color: #333;
+  padding: 1rem;
+  line-height: 1.5;
+}
+.title {
+  text-align: center;
+  margin-bottom: 1rem;
+  font-weight: 700;
+  color: #2ecc71; /* Vibrant green for the title */
+}
+
+/* PROGRESS BAR */
+.progress-bar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 80%;
+  margin: 0 auto 2rem;
+  position: relative;
+  height: 4px;
+  background: #e6f8ec; /* Light green track behind steps */
+  border-radius: 2px;
+}
+.progress {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  background: #2ecc71; /* Filled portion is bright green */
+  border-radius: 2px;
+  z-index: 1;
+  transition: width 0.3s ease;
+}
+.progress-step {
+  width: 20px;
+  height: 20px;
+  background: #c2eccc;
+  border-radius: 50%;
+  z-index: 2;
+  position: relative;
+  flex-shrink: 0;
+}
+.progress-step.active {
+  background: #2ecc71; /* Active step is bright green */
+}
+
+/* FORM WRAPPER */
+#solarForm {
+  background: #fff; /* White container for the form */
+  padding: 2rem;
+  max-width: 600px;
+  margin: 0 auto;
+  border-radius: 1rem; /* Softer corners */
+  box-shadow: 0 4px 12px rgba(0,0,0,0.05); /* Modern light shadow */
+}
+
+/* FORM STEPS */
+.form-step {
+  display: none; /* Hide all steps by default */
+  flex-direction: column;
+}
+.form-step.active {
+  display: flex; /* Only the current step is shown */
+}
+h2 {
+  margin-bottom: 1rem;
+  color: #2ecc71;
+  font-weight: 700;
+}
+p {
+  margin-bottom: 1rem;
+  color: #555;
+}
+
+/* FORM-GROUP */
+.form-group {
+  margin-bottom: 1.5rem;
+}
+.form-group label {
+  display: block;
+  margin-bottom: 0.5rem;
+  font-weight: 600;
+}
+.form-group input[type="text"],
+.form-group input[type="number"],
+.form-group input[type="tel"],
+.form-group input[type="email"],
+.form-group input[type="range"] {
+  width: 100%;
+  padding: 0.8rem;
+  border: 1px solid #ddd;
+  border-radius: 0.5rem;
+  font: inherit;
+}
+.form-group input[type="range"] {
+  cursor: pointer;
+}
+
+/* BUTTONS */
+.button-group {
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+  margin-top: 1rem;
+}
+.btn {
+  background: #2ecc71;
+  color: #fff;
+  border: none;
+  padding: 0.7rem 1.5rem;
+  border-radius: 0.5rem;
+  cursor: pointer;
+  font: inherit;
+  font-weight: 600;
+  transition: background 0.2s ease;
+}
+.btn:hover {
+  background: #27ae60; /* Darker green on hover */
+}
+.prev-btn {
+  background: #bbb; /* Grayish back button */
+}
+.prev-btn:hover {
+  background: #999;
+}
+.submit-btn {
+  background: #27ae60; /* A slightly darker green for final submit */
+}
+.submit-btn:hover {
+  background: #219150;
+}
+
+/* STEP 2 - DACHTYP */
+.dachtyp-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  margin-bottom: 1rem;
+}
+.dachtyp-btn {
+  flex: 1 1 calc(25% - 1rem);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 1rem;
+  background: #f8fff8;
+  border: 2px solid #ddd;
+  border-radius: 0.5rem;
+  cursor: pointer;
+  transition: background 0.2s ease, transform 0.2s ease;
+}
+.dachtyp-btn img {
+  width: 200px;
+  height: auto;
+  margin-bottom: 0.5rem;
+}
+.dachtyp-btn:hover {
+  background: #e6f8ec;
+  transform: translateY(-2px);
+}
+
+/* STEP 4 - HAUSHALT */
+.household-container {
+  display: flex;
+  gap: 0.5rem;
+  margin-bottom: 1rem;
+}
+.haushalt-btn {
+  flex: 1 1 70px;
+  text-align: center;
+  padding: 1rem;
+  background: #f8fff8;
+  border: 2px solid #ddd;
+  border-radius: 0.5rem;
+  cursor: pointer;
+  transition: background 0.2s ease, transform 0.2s ease;
+}
+.haushalt-btn:hover {
+  background: #e6f8ec;
+  transform: translateY(-2px);
+}
+
+/* STEP 5 - ERSPARNIS */
+.ersparnis-display {
+  font-size: 2rem;
+  background: #2ecc71;
+  color: #fff;
+  display: inline-block;
+  padding: 0.5rem 1rem;
+  border-radius: 0.5rem;
+  margin: 1rem 0;
+}
+
+/* MEDIA QUERIES (RESPONSIVE) */
+@media (max-width: 600px) {
+  .progress-bar {
+    width: 90%;
+  }
+  .dachtyp-btn {
+    flex: 1 1 100%;
+  }
+  .haushalt-btn {
+    flex: 1 1 100%;
+  }
+  .button-group {
+    flex-direction: column;
+    align-items: stretch;
+  }
+}
